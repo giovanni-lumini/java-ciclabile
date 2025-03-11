@@ -1,42 +1,78 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Ciclabile {
+    // variabile d'istanza
+    private ArrayList<Integer> listaDiNumeriInteri;
+    private Iterator<Integer> iterator;
 
-    // 1-realizzare una classe che contenga un elenco di interi e che ci permetta di
-    // ciclarli (dal primo all’ultimo)
-    public static void main(String[] args) {
-        ArrayList<Integer> listaDiNumeriInteri = new ArrayList<>();
-        listaDiNumeriInteri.add(1);
-        listaDiNumeriInteri.add(2);
-        listaDiNumeriInteri.add(3);
-        listaDiNumeriInteri.add(4);
-        listaDiNumeriInteri.add(5);
-        System.out.println(listaDiNumeriInteri);
-
-        for (Integer element : listaDiNumeriInteri) {
-            System.out.println(element);
-        }
-
+    // costruttore
+    public Ciclabile(ArrayList<Integer> listaDiNumeriInteri) {
+        this.listaDiNumeriInteri = listaDiNumeriInteri;
+        this.iterator = listaDiNumeriInteri.iterator();
     }
 
-    // 2-Dovrà offrire due metodi :
-    // 2.1- int getElementoSuccessivo() (che restituisce il prossimo elemento
-    // rispetto all’ultima volta che è stato invocato. Cioè la prima volta
-    // restituisce il primo elemento, la seconda volta il secondo, …)
-    // 2.2- boolean hasAncoraElementi() (che deve restituire true se ci sono ancora
-    // elementi da restituire)
+    // metodi
+    // getElementoSuccessivo:
+    // restituisce il prossimo elemento rispetto all’ultima volta che è stato
+    // invocato.
+    // la prima volta restituisce il primo elemento, la seconda il secondo,ecc..
+    public Integer getElementoSuccessivo() {
+        if (iterator.hasNext()) {
+            return iterator.next(); // restituisce il prossimo elemento, se c'è
+        }
+        return null; // restituisce null se non si sono più elementi
+        // hasNext() significa: fin che ci sono elementi disponibili,
+        // se ci sono: hasNext()= true, se non ci sono hasNext()= false
+        // next() significa: restituisci il prossimo elemento
+    }
 
-    // 3-La classe deve avere un costruttore che prende come parametro un array di
-    // interi (che sarà l’elenco che viene gestito internamente)
+    // hasAncoraElementi
+    // deve restituire true se ci sono ancora elementi da restituire
+    public boolean hasAncoraElementi() {
+        return iterator.hasNext(); // restituisce true se ci sono elementi disponibili, false se non ci sono
+    }
 
-    // 4-Internamente alla classe vogliamo mantenere l’elenco di interi come array,
-    // no ArrayList o simili.
+    public static void main(String[] args) {
 
-    // 5-Bonus :
-    // prevedere anche un costruttore che non prenda parametri e un metodo
-    // addElemento che permetta di aggiungere un nuovo intero all’elenco da ciclare.
-    // Nota bene:
-    // Vanno utilizzati solo gli array nativi e quindi non è possibile usare
-    // iterator vari.
+        // creiamo l'ArrayList da passare poi a Ciclabile
+        ArrayList<Integer> nuovaListaDiNumeriInteri = new ArrayList<Integer>();
 
+        // aggiungiamo elementi a nuovaListaDiNumeriInteri
+        nuovaListaDiNumeriInteri.add(1);
+        nuovaListaDiNumeriInteri.add(2);
+        nuovaListaDiNumeriInteri.add(3);
+        nuovaListaDiNumeriInteri.add(4);
+        nuovaListaDiNumeriInteri.add(5);
+
+        // creiamo l'oggetto Ciclabile
+        Ciclabile ciclabile = new Ciclabile(nuovaListaDiNumeriInteri);
+
+        // getElementoSuccessivo e hasAncoraElementi:
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+        System.out.println(ciclabile.getElementoSuccessivo());
+        System.out.println(ciclabile.hasAncoraElementi());
+    }
 }
+
+// 3-La classe deve avere un costruttore che prende come parametro un array di
+// interi (che sarà l’elenco che viene gestito internamente)
+
+// 4-Internamente alla classe vogliamo mantenere l’elenco di interi come array,
+// no ArrayList o simili.
+
+// 5-Bonus :
+// prevedere anche un costruttore che non prenda parametri e un metodo
+// addElemento che permetta di aggiungere un nuovo intero all’elenco da ciclare.
+// Nota bene:
+// Vanno utilizzati solo gli array nativi e quindi non è possibile usare
+// iterator vari.
