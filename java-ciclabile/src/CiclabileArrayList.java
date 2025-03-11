@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Ciclabile {
+public class CiclabileArrayList {
     // variabile d'istanza
     private ArrayList<Integer> listaDiNumeriInteri;
     private Iterator<Integer> iterator;
 
     // costruttore
-    public Ciclabile(ArrayList<Integer> listaDiNumeriInteri) {
+    public CiclabileArrayList(ArrayList<Integer> listaDiNumeriInteri) {
         this.listaDiNumeriInteri = listaDiNumeriInteri;
         this.iterator = listaDiNumeriInteri.iterator();
     }
@@ -46,7 +46,7 @@ public class Ciclabile {
         nuovaListaDiNumeriInteri.add(5);
 
         // creiamo l'oggetto Ciclabile
-        Ciclabile ciclabile = new Ciclabile(nuovaListaDiNumeriInteri);
+        CiclabileArrayList ciclabile = new CiclabileArrayList(nuovaListaDiNumeriInteri);
 
         // getElementoSuccessivo e hasAncoraElementi:
         System.out.println(ciclabile.getElementoSuccessivo());
@@ -63,16 +63,3 @@ public class Ciclabile {
         System.out.println(ciclabile.hasAncoraElementi());
     }
 }
-
-// 3-La classe deve avere un costruttore che prende come parametro un array di
-// interi (che sarà l’elenco che viene gestito internamente)
-
-// 4-Internamente alla classe vogliamo mantenere l’elenco di interi come array,
-// no ArrayList o simili.
-
-// 5-Bonus :
-// prevedere anche un costruttore che non prenda parametri e un metodo
-// addElemento che permetta di aggiungere un nuovo intero all’elenco da ciclare.
-// Nota bene:
-// Vanno utilizzati solo gli array nativi e quindi non è possibile usare
-// iterator vari.
