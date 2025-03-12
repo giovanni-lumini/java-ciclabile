@@ -7,15 +7,17 @@ public class CiclabileArray {
 
     // costruttore
     public CiclabileArray() {
-        this.listaDiNumeriInteri = new int[5];
-        indiceCorrente = 0;
+        this.listaDiNumeriInteri = new int[0];
+        this.indiceCorrente = 0;
     }
 
     // metodi
     // hasAncoraElementi
     // deve restituire true se ci sono ancora elementi da restituire
     public boolean hasAncoraElementi() {
-        return indiceCorrente < listaDiNumeriInteri.length; // Controlla se l'indice è ancora valido
+        // se l'indice corrente è inferiore al numero di elementi nell’array
+        // ritorna true, altrimenti false
+        return indiceCorrente < listaDiNumeriInteri.length;
     }
 
     // getElementoSuccessivo:
@@ -23,20 +25,23 @@ public class CiclabileArray {
     // invocato.
     // la prima volta restituisce il primo elemento, la seconda il secondo,ecc..
     public int getElementoSuccessivo() {
+        // se ci sono ancora elementi da restituire (true)
         if (hasAncoraElementi()) {
-            return listaDiNumeriInteri[indiceCorrente++]; // Restituisce l'elemento e incrementa l'indice
+            // ritorna il porssimo elemento e incrementa l'indice
+            return listaDiNumeriInteri[indiceCorrente++];
         }
-        return 0; // Nessun altro elemento
+        // altrimenti ritorna 0 se non si sono più elementi
+        return 0;
     }
 
     // addElemento:
     // aggiungere un nuovo intero all'array
-    public int[] addElemento(int elemento) {
-        // Creiamo un nuovo array con uno spazio in più
+    public int[] addElemento(int elementoDaAggiungere) {
+        // creiamo un nuovo array, copia dell'originale, con uno spazio in più
         int[] nuovoArray = Arrays.copyOf(listaDiNumeriInteri, listaDiNumeriInteri.length + 1);
-        // Aggiungiamo il nuovo elemento in fondo
-        nuovoArray[nuovoArray.length - 1] = elemento;
-        // Aggiorniamo l'array originale
+        // aggiungiamo il nuovo elemento all'ultimo indice dell'array
+        nuovoArray[nuovoArray.length - 1] = elementoDaAggiungere;
+        // aggiorniamo l'array originale
         listaDiNumeriInteri = nuovoArray;
         return listaDiNumeriInteri;
     }
@@ -47,25 +52,16 @@ public class CiclabileArray {
         CiclabileArray ciclabile = new CiclabileArray();
 
         // addElemento
+        ciclabile.addElemento(1);
+        ciclabile.addElemento(2);
+        ciclabile.addElemento(3);
+        ciclabile.addElemento(4);
+        ciclabile.addElemento(5);
         ciclabile.addElemento(6);
-        ciclabile.addElemento(7);
 
         // getElementoSuccessivo e hasAncoraElementi
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi());
-        System.out.println(ciclabile.getElementoSuccessivo());
-        System.out.println(ciclabile.hasAncoraElementi()); // Dovrebbe stampare false
-        System.out.println(ciclabile.getElementoSuccessivo()); // Dovrebbe stampare 0
-        System.out.println(ciclabile.hasAncoraElementi()); // Dovrebbe stampare false
+        while (ciclabile.hasAncoraElementi()) {
+            System.out.println(ciclabile.getElementoSuccessivo());
+        }
     }
 }
